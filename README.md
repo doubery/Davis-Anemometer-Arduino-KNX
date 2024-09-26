@@ -37,19 +37,23 @@ Arduino - TTL
 The wind speed is measured over 2.5 seconds.
 If a measurement was successful, the wind direction is also determined.
 This values are then evaluated in order to transmit this values and alarm messages to the bus using reference values.
+
 Attention was paid to not overload the bus unnecessarily: 
 Values are only send, if there was a change to previous measurements, 
 or if a time of approx. 30 seconds has elapsed (12 times with waiting 2.5 sek for Davis speed meassurement).
 
 The high_speed value is updated every 30 seconds at the latest.
 This is required for shutter actuator to detect a failure of the weather station, so that the shutters are opened as a precaution. 
+
 This actuator expects (depending on the paramater settings in the ETS) at least one update of the value within one minute (if used)
 
 SPEED ALARM:
+
 Speed at which the shutters should be opened automatically for safety reasons.
 Can be set by the ETS / or via the group address (via homeassistant...)
 
 DIFF ALARM:
+
 Speed difference between two measurements (2x/min) at which the blinds should be opened automatically for safety reasons.
 Can be set by the ETS / or via the group address (via homeassistant...)
 
