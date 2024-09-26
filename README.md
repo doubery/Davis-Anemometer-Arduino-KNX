@@ -33,7 +33,7 @@ Arduino - TTL
 - RAW     -> 5V (VCC)
 - GND     -> GND
 
-#How the scetch works
+# How the scetch works
 The wind speed is measured over 2.5 seconds.
 If a measurement was successful, the wind direction is also determined.
 This values are then evaluated in order to transmit this values and alarm messages to the bus using reference values.
