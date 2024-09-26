@@ -4,7 +4,7 @@ Connect Davis Anemometer to Arduino (Pro Mini 5V) send Data to KNX
 This code is an extension of the following great projects:
 
 https://github.com/wrybread/weewx-ArduinoWeatherStation
-and
+
 https://github.com/doubery/Davis-Anemometer-Arduino/tree/main
 
 With the awsome work of:
