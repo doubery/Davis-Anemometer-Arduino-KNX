@@ -279,7 +279,7 @@ void readWind() {
           alarm = true;
 
           // check if the transmission was successfully
-          bool success = knx.groupWriteBool(ALARM_GROUP_ADDRESS, alarm);
+          success = knx.groupWriteBool(ALARM_GROUP_ADDRESS, alarm);
 
           // if the transmission was successfull
           if (success == 1) {
@@ -364,7 +364,7 @@ void readWind() {
           high_speed = true;
 
           // check if the transmission was successfully
-          bool success = knx.groupWriteBool(HIGH_ALARM_GROUP_ADDRESS, high_speed);
+          success = knx.groupWriteBool(HIGH_ALARM_GROUP_ADDRESS, high_speed);
 
           // if the transmission was successfull
           if (success == 1) {
