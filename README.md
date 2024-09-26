@@ -4,6 +4,7 @@ Connect Davis Anemometer to Arduino (Pro Mini 5V) send Data to KNX
 This code is an extension of the following great projects:
 
 https://github.com/wrybread/weewx-ArduinoWeatherStation
+and
 https://github.com/doubery/Davis-Anemometer-Arduino/tree/main
 
 With the awsome work of:
@@ -14,22 +15,22 @@ This is a sketch to connect a davis wind-sensor to a Arduino (Pro Mini 5V), for 
 
 # Wiring and Setup
 Davis - Arduino Pro Mini (5V)
-- - - yellow  -> VCC (3.3 V)
-- - - green   -> Pin A0
-- - - red     -> GND
-- - - black   -> Pin 2 
+- yellow  -> VCC (3.3 V)
+- green   -> Pin A0
+- red     -> GND
+- black   -> Pin 2 
 
 Arduino - BUS-Coupling-Unit
-- - RX    -> TX
-- - TX    -> RX
-- - RAW   -> VCC
-- - GND   -> GND
+- RX    -> TX
+- TX    -> RX
+- RAW   -> VCC
+- GND   -> GND
 
 Arduino - TTL
-- - Pin 12  -> TX
-- - Pin 13  -> RX
-- - RAW     -> 5V (VCC)
-- - GND     -> GND
+- Pin 12  -> TX
+- Pin 13  -> RX
+- RAW     -> 5V (VCC)
+- GND     -> GND
 
 #How the scetch works
 The wind speed is measured over 2.5 seconds.
