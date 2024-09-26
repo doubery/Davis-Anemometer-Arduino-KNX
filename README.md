@@ -1,4 +1,4 @@
-# Davis-Anemometer-Arduino
+# Davis-Anemometer-Arduino-KNX
 Connect Davis Anemometer to Arduino (Pro Mini 5V) send Data to KNX
 
 This code is an extension of the following great projects:
