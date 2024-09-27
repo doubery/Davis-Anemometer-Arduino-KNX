@@ -57,9 +57,16 @@ DIFF ALARM:
 Speed difference between two measurements (2x/min) at which the blinds should be opened automatically for safety reasons.
 Can be set by the ETS / or via the group address (via homeassistant...)
 
+VANE OFFSET
+
+This is the value of how much the anemometer turns away from the northern point.
+Can be set by the ETS / or via the group address (via homeassistant...)
+
 # Installation / prepare for use
 1. Load the latest library of "timerone"
-2. Load the latest library of "KnxTpUart" 
-3. Copy the code to your arduino ide
-4. Flash the Arduino 
-5. Open serial monitor with baudrate 9600
+2. Load the latest library of "KnxTpUart"
+3. Load the latest library of "EEPROM"
+4. Load the latest library of "SoftwareSerial"
+5. Copy the code to your arduino ide
+6. Flash the Arduino 
+7. Open serial monitor with baudrate 9600
