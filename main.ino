@@ -49,6 +49,10 @@ DIFF ALARM:
 Speed difference between two measurements (2x/min) at which the blinds should be opened automatically for safety reasons.
 Can be set by the ETS / or via the group address (via homeassistant...)
 
+VANE OFFSET:
+This is the value of how much the anemometer turns away from the northern point.
+Can be set by the ETS / or via the group address (via homeassistant...)
+
 © doubery
 copy, share and change this code by specifying the original code writer is allowed thx.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,7 +79,6 @@ copy, share and change this code by specifying the original code writer is allow
 #define SPEED_ALARM_GROUP_ADDRESS       "10/1/17" // Groupaddress to recieve a speed value (km/h)
 #define DIFF_ALARM_STATE_GROUP_ADDRESS  "10/1/18" // Groupaddress to request the diff value (km/h)
 #define SPEED_ALARM_STATE_GROUP_ADDRESS "10/1/19" // Groupaddress to request the speed value (km/h)
-
 #define VANE_OFFSET_GROUP_ADDRESS       "10/1/20" // Groupaddress to recieve a float offset value of the vane
 #define VANE_OFFSET_STATE_GROUP_ADDRESS "10/1/21" // Groupaddress to request the offset value of the vane
 
