@@ -137,6 +137,7 @@ void setup() {
   lastWindDirectionValue = ""; 
   IsSampleRequired = false; 
 
+  speedkmh = 0.0;
   speedkmh_old = 999.0;
   speedkmh_last = 0.0;
 
@@ -187,18 +188,20 @@ void setup() {
 
     knx.groupWrite2ByteFloat(DIFF_ALARM_GROUP_ADDRESS, 15.0);
 
+    diff_alarm = EEPROM.get(0, diff_alarm);
     mySerial.print("Diff Alarm Value: ");
-    mySerial.println(EEPROM.get(0, diff_alarm));
+    mySerial.println(diff_alarm);
   
   }
 
   // if there is no value in eeprom, set default
   else {
 
+    diff_alarm = EEPROM.get(0, diff_alarm);
     mySerial.print("Diff Alarm Value: ");
-    mySerial.println(EEPROM.get(0, diff_alarm));
+    mySerial.println(diff_alarm);
 
-    knx.groupWrite2ByteFloat(DIFF_ALARM_GROUP_ADDRESS, EEPROM.get(0, diff_alarm));
+    knx.groupWrite2ByteFloat(DIFF_ALARM_GROUP_ADDRESS, diff_alarm);
 
   }
 
@@ -215,18 +218,20 @@ void setup() {
 
     knx.groupWrite2ByteFloat(SPEED_ALARM_GROUP_ADDRESS, 15.0);
 
+    speed_alarm = EEPROM.get(64, speed_alarm);
     mySerial.print("Speed Alarm Value: ");
-    mySerial.println(EEPROM.get(64, speed_alarm));
+    mySerial.println(speed_alarm);
 
   }
 
   // if there is a value in eeprom, print
   else {
 
+    speed_alarm = EEPROM.get(64, speed_alarm);
     mySerial.print("Speed Alarm Value: ");
-    mySerial.println(EEPROM.get(64, speed_alarm));
+    mySerial.println(speed_alarm);
 
-    knx.groupWrite2ByteFloat(SPEED_ALARM_GROUP_ADDRESS, EEPROM.get(64 , speed_alarm));
+    knx.groupWrite2ByteFloat(SPEED_ALARM_GROUP_ADDRESS, speed_alarm);
 
   }
 
@@ -241,18 +246,20 @@ void setup() {
 
     knx.groupWrite2ByteInt(VANE_OFFSET_GROUP_ADDRESS, 0);
 
+    vane_offset = EEPROM.get(64, vane_offset);
     mySerial.print("Vane Offset Value: ");
-    mySerial.println(EEPROM.get(128, vane_offset));
+    mySerial.println(vane_offset);
 
   }
 
   // if there is a value in eeprom, print
   else {
 
+    vane_offset = EEPROM.get(64, vane_offset);
     mySerial.print("Vane Offset Value: ");
-    mySerial.println(EEPROM.get(128, vane_offset));
+    mySerial.println(vane_offset);
 
-    knx.groupWrite2ByteInt(VANE_OFFSET_GROUP_ADDRESS, EEPROM.get(128 , vane_offset));
+    knx.groupWrite2ByteInt(VANE_OFFSET_GROUP_ADDRESS, vane_offset);
 
   }
 
@@ -301,13 +308,13 @@ void readWind() {
       if ((speedkmh - speedkmh_last) > diff_alarm) {
 
         mySerial.print("Speed km/h ");
-        mySerial.println(String(speedkmh));
+        mySerial.println(speedkmh);
 
         // check if the alarm is false to update this value if not
         if (alarm == false) {
 
           mySerial.print("Diff-Alarm over ");
-          mySerial.println(String(diff_alarm));
+          mySerial.println(diff_alarm);
 
           // check if the transmission was successfully
           success = knx.groupWrite2ByteFloat(SPEED_GROUP_ADDRESS, speedkmh);
@@ -383,15 +390,15 @@ void readWind() {
       if (speedkmh >= speed_alarm){
 
         mySerial.print("Windspeed over Speedlimit ");
-        mySerial.println(String(speed_alarm));
+        mySerial.println(speed_alarm);
         mySerial.print("Counter: ");
-        mySerial.println(String(counter));
+        mySerial.println(counter);
 
         // check if hihg_speed is low
         if (high_speed == false) {
 
           mySerial.print("Max Speed over ");
-          mySerial.println(String(speedkmh));
+          mySerial.println(speedkmh);
           mySerial.println("Set highspeed = true");
 
           // check if the transmission was successfully
@@ -435,7 +442,7 @@ void readWind() {
         if (counter == 12) {
 
           mySerial.print("Windspeed over ");
-          mySerial.print(String(speed_alarm));
+          mySerial.print(speed_alarm);
           mySerial.println("km/h and counter = 12");
 
           // check if actual speed isn't the same like the old one
@@ -547,9 +554,9 @@ void readWind() {
       else {
 
         mySerial.print("Windspeed under Speedlimit "); 
-        mySerial.println(String(speed_alarm));
+        mySerial.println(speed_alarm);
         mySerial.print("Counter: ");
-        mySerial.println(String(counter));
+        mySerial.println(counter);
 
         // check if high_speed is true
         if (high_speed == true) {
@@ -579,16 +586,16 @@ void readWind() {
         if (counter == 12) {
 
           mySerial.print("Windspeed under ");
-          mySerial.print(String(speed_alarm));
+          mySerial.print(speed_alarm);
           mySerial.println("km/h and counter = 12");
 
           // check if the actual speed is different of the old speed value
           if (speedkmh != speedkmh_old) {
 
             mySerial.print("speedkmh: ");
-            mySerial.println(String(speedkmh));
+            mySerial.println(speedkmh);
             mySerial.print("speedkmh_old: ");
-            mySerial.println(String(speedkmh_old));
+            mySerial.println(speedkmh_old);
 
             // check if the transmission was successfully
             success = knx.groupWrite2ByteFloat(SPEED_GROUP_ADDRESS, speedkmh);
@@ -767,7 +774,7 @@ boolean SerialEvent() {
 
           else {
 
-            mySerial.println("Speed Alarm State Value  not successfully send to KNX-BUS");
+            mySerial.println("Speed Alarm State Value not successfully send to KNX-BUS");
             
           }
 
@@ -779,7 +786,7 @@ boolean SerialEvent() {
         else if (target == VANE_OFFSET_STATE_GROUP_ADDRESS) {
 
           // read value of eeprom
-          vane_offset_state_alarm = EEPROM.get(64, vane_offset);
+          vane_offset_state_alarm = EEPROM.get(128, vane_offset);
 
           // check if the request was successfully
           success = knx.groupWrite2ByteInt(VANE_OFFSET_STATE_GROUP_ADDRESS, vane_offset_state_alarm);
@@ -787,13 +794,13 @@ boolean SerialEvent() {
           // if the transmission was successfull
           if (success == 1) {
 
-            mySerial.println("Speed Alarm State Value successfully send to KNX-BUS");
+            mySerial.println("Vane Offset State Value successfully send to KNX-BUS");
 
           }
 
           else {
 
-            mySerial.println("Speed Alarm State Value  not successfully send to KNX-BUS");
+            mySerial.println("Vane Offset State Value not successfully send to KNX-BUS");
             
           }
 
@@ -812,7 +819,7 @@ boolean SerialEvent() {
           mySerial.print("Recieved Value: ");
 
           float value1 = telegram->get2ByteFloatValue();
-          mySerial.println(String(value1));
+          mySerial.println(value1);
 
           knx.groupAnswer2ByteFloat(target, value1);
 
@@ -834,7 +841,7 @@ boolean SerialEvent() {
           mySerial.print("Recieved Value: ");
 
           float value2 = telegram->get2ByteFloatValue();
-          mySerial.println(String(value2));
+          mySerial.println(value2);
 
           knx.groupAnswer2ByteFloat(target, value2);
 
@@ -856,7 +863,7 @@ boolean SerialEvent() {
           mySerial.print("Recieved Value: ");
 
           int value3 = telegram->get2ByteIntValue();
-          mySerial.println(String(value3));
+          mySerial.println(value3);
 
           knx.groupAnswer2ByteInt(target, value3);
 
@@ -916,7 +923,9 @@ void getWindDirection() {
   // read the analog value and transorm this 1024 bit to 360 degree
   vaneValue = analogRead(WindVanePin); 
   windDirection = map(vaneValue, 0, 1023, 0, 360); 
-  windCalDirection = windDirection + EEPROM.get(128, vane_offset); 
+
+  vane_offset = EEPROM.get(128, vane_offset);
+  windCalDirection = windDirection + vane_offset; 
 
   // check if anemometer offset is over 360 from magnetic north
   if(windCalDirection > 360) {
