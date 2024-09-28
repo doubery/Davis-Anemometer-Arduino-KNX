@@ -704,7 +704,7 @@ void readWind() {
 
 
 // function to respond to a request via serial interface
-boolean SerialEvent() {
+void serialEvent() {
 
   // check if there is traffic on the serial port
   if (Serial.available() > 0) {
@@ -752,8 +752,6 @@ boolean SerialEvent() {
             
           }
 
-          return true;
-
         } 
     
         // check if the groupaddress is the SPEED_ALARM_STATE_GROUP_ADDRESS
@@ -778,8 +776,6 @@ boolean SerialEvent() {
             
           }
 
-          return true;
-
         } 
 
         // check if the groupaddress is the VANE_OFFSET_STATE_GROUP_ADDRESS
@@ -803,8 +799,6 @@ boolean SerialEvent() {
             mySerial.println("Vane Offset State Value not successfully send to KNX-BUS");
             
           }
-
-          return true;
 
         } 
 
@@ -831,8 +825,6 @@ boolean SerialEvent() {
 
           }
 
-          return true;
-
         } 
     
         // check if the groupaddress is the SPEED_ALARM_GROUP_ADDRESS
@@ -852,8 +844,6 @@ boolean SerialEvent() {
               EEPROM.put(64, value2);
 
           }
-
-          return true;
 
         }
 
@@ -875,8 +865,6 @@ boolean SerialEvent() {
 
           }
 
-          return true;
-
         }
 
       }
@@ -884,8 +872,6 @@ boolean SerialEvent() {
     }
 
   }
-
-  return false;
 
 }
 
