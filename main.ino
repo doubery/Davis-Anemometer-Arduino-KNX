@@ -75,10 +75,10 @@ copy, share and change this code by specifying the original code writer is allow
 #define ERROR_GROUP_ADDRESS             "10/1/13" // Groupaddress to transmit error messeges (ASCII)
 
 #define ALARM_GROUP_ADDRESS             "10/1/14" // Groupaddress to set the alarm (bool)  
-	(True, if difference between actual speed and last speed is over diff_alerm value)
+	//(True, if difference between actual speed and last speed is over diff_alerm value)
 	
 #define HIGH_ALARM_GROUP_ADDRESS        "10/1/15" // Groupaddress to set high alarm (bool) 
-	(True, if speed is over speed_alarm value, also it is updated every 30sec, to trigger wind alarm function in Jal actor, so if the sensor doesn't work the jal's are opened for safety)
+	//(True, if speed is over speed_alarm value, also it is updated every 30sec, to trigger wind alarm function in Jal actor, so if the sensor doesn't work the jal's are opened for safety)
 
 #define DIFF_ALARM_GROUP_ADDRESS        "10/1/16" // Groupaddress to recieve a diff value (km/h)
 #define SPEED_ALARM_GROUP_ADDRESS       "10/1/17" // Groupaddress to recieve a speed value (km/h)
