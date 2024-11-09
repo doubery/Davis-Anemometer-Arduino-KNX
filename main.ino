@@ -70,11 +70,16 @@ copy, share and change this code by specifying the original code writer is allow
 
 // Define KNX Group-Addresses
 #define SPEED_GROUP_ADDRESS             "10/1/10" // Groupaddress for the windspeed value
-#define DIRECTION_NAME_GROUP_ADDRESS    "10/1/11" // Groupaddress for the 
+#define DIRECTION_NAME_GROUP_ADDRESS    "10/1/11" // Groupaddress for the direction name
 #define DIRECTION_GROUP_ADDRESS         "10/1/12" // Groupaddress for the direction in degree
-#define ERROR_GROUP_ADDRESS             "10/1/13" // Groupaddress to transmit error messeges 
-#define ALARM_GROUP_ADDRESS             "10/1/14" // Groupaddress to set the alarm (bool)
-#define HIGH_ALARM_GROUP_ADDRESS        "10/1/15" // Groupaddress to set high alarm (bool)
+#define ERROR_GROUP_ADDRESS             "10/1/13" // Groupaddress to transmit error messeges (ASCII)
+
+#define ALARM_GROUP_ADDRESS             "10/1/14" // Groupaddress to set the alarm (bool)  
+	(True, if difference between actual speed and last speed is over diff_alerm value)
+	
+#define HIGH_ALARM_GROUP_ADDRESS        "10/1/15" // Groupaddress to set high alarm (bool) 
+	(True, if speed is over speed_alarm value, also it is updated every 30sec, to trigger wind alarm function in Jal actor, so if the sensor doesn't work the jal's are opened for safety)
+
 #define DIFF_ALARM_GROUP_ADDRESS        "10/1/16" // Groupaddress to recieve a diff value (km/h)
 #define SPEED_ALARM_GROUP_ADDRESS       "10/1/17" // Groupaddress to recieve a speed value (km/h)
 #define DIFF_ALARM_STATE_GROUP_ADDRESS  "10/1/18" // Groupaddress to request the diff value (km/h)
